@@ -146,7 +146,7 @@ VinPure| Owner this gamemode
 #define RangeInBase 3
 #define MAX_DEERS 100
 #define MAX_SZ 100
-#define MAX_DROP_ITEMS 100
+#define MAX_DROP_ITEMS 100000
 #define MAX_ITEMS 99
 #define MAX_ITEM_STACK 99
 #define MAX_ITEM_NAME 24
@@ -924,6 +924,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 	if(!IsPlayerNPC(playerid))
 	{
 	PlayerInfo[killerid][pKills] += 1;
+	GivePlayerCash(playerid,50);
 	}
 	new slot = PlayerInfo[playerid][pSlot],Float:x,Float:y,Float:z;
 	GetPlayerPos(playerid,x,y,z);
@@ -2153,6 +2154,7 @@ CMD:eg(playerid,params[])
 	VInfo[GetPlayerVehicleID(playerid)][Engine] = 1;
 	return 1;
 }
+
 ///////////////////////
 CMD:engine(playerid, params[])
 {
@@ -4386,11 +4388,11 @@ public OnPlayerUseItem(playerid,ItemName[])
     SCM(playerid,-1,"You for sleep");
     return 0;
     }
+    
 	if(!strcmp(ItemName,"Engine",true))
 	{
 	new Float:vx,Float:vy,Float:vz;
-	if(PlayerHasItem(playerid,"Toolbox"))
-	{
+	if(!PlayerHasItem(playerid,"ToolBox")) return SCM(playerid,-1,"You need tool box");
     for(new v=0;v<MAX_VEHICLES;v++)
     {
     GetVehiclePos(v,vx,vy,vz);
@@ -4404,34 +4406,44 @@ public OnPlayerUseItem(playerid,ItemName[])
 	VInfo[v][Engine] = 1;
  	RemoveItem(playerid,ItemName,1);
     PlayerInfo[playerid][pSlotu] -=1;
+    SCM(playerid,-1,"Add Engine to this car");
+    break;
 	}
-    }
-    }
-    else
-    {
-    SCM(playerid,COLOR_RED,"You need tool box");
     }
     return 0;
     }
+    
 	if(!strcmp(ItemName,"GasCan",true))
 	{
 	new Float:vx,Float:vy,Float:vz;
-    RemoveItem(playerid,ItemName,1);
-    PlayerInfo[playerid][pSlotu] -=1;
     for(new v=0;v<MAX_VEHICLES;v++)
     {
     GetVehiclePos(v,vx,vy,vz);
 	if(IsPlayerInRangeOfPoint(playerid,3,vx,vy,vz))
 	{
 	VInfo[v][Fuel] += 50;
+	RemoveItem(playerid,ItemName,1);
+	AddItem(playerid,"EGascan",1);
+	SCM(playerid,-1,"Add Fuel to this car");
 	if(VInfo[v][Fuel] > 100)
 	{
 	VInfo[v][Fuel] = 100;
 	}
+	break;
 	}
+    }
+	}
+    if(!strcmp(ItemName,"EGasCan",true))
+	{
+	if(IsPlayerInPointGas(playerid))
+	{
+    RemoveItem(playerid,ItemName,1);
+    AddItem(playerid,"GasCan",1);
+    SCM(playerid,-1,"Full Gas can");
     }
     return 0;
     }
+    
     if(!strcmp(ItemName,"Box",true))
 	{
     new Float: X, Float: Y, Float: Z,string[128];
@@ -4557,16 +4569,7 @@ public OnPlayerUseItem(playerid,ItemName[])
     SCM(playerid,-1,"You use medit");
     return 0;
     }
-	if(!strcmp(ItemName,"EGasCan",true))
-	{
-	if(IsPlayerInPointGas(playerid))
-	{
-    RemoveItem(playerid,ItemName,1);
-    AddItem(playerid,"GasCan",1);
-    SCM(playerid,-1,"Full Gas can");
-    }
-    return 0;
-    }
+	
 	if(!strcmp(ItemName,"AmmoColt",true))
 	{
     RemoveItem(playerid,ItemName,1);
