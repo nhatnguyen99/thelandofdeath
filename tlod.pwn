@@ -883,14 +883,12 @@ public OnPlayerSpawn(playerid)
 	if(PlayerInfo[playerid][pSpawn] == 1)
 	{
 	SetPlayerPos(playerid,PlayerInfo[playerid][sposx],PlayerInfo[playerid][sposy],PlayerInfo[playerid][sposz]);
-	GivePlayerHP(playerid,PlayerInfo[playerid][hp]);
 	GivePlayerSkin(playerid,PlayerInfo[playerid][pSkin]);
 	GiveGun(playerid);
 	}
 	else
 	{
 	PlayerInfo[playerid][pSleep] = 100;
-
 	ResetPlayerWeapons(playerid);
 	TogglePlayerControllable(playerid,0);
 	ShowSelectGender(playerid);
@@ -898,11 +896,21 @@ public OnPlayerSpawn(playerid)
     SetPlayerFacingAngle(playerid, RandomSpawns[Random][3]);
     PlayerInfo[playerid][pSlot] = 5;
     PlayerInfo[playerid][pSlotu] = 0;
-    PlayerInfo[playerid][hp] = 100;
     SetPlayerHunger(playerid,100);
     SetPlayerThirst(playerid,100);
+    switch(RandomEx(1,2))
+    {
+	case 1:
+	{
 	AddItem(playerid,"Shovel",1);
 	PlayerInfo[playerid][pSlotu] +=1;
+	}
+	case 2:
+	{
+	AddItem(playerid,"GpsMap",1);
+	PlayerInfo[playerid][pSlotu] +=1;
+	}
+	}
 	}
 	return 1;
 }
@@ -1270,14 +1278,14 @@ public LoadPlayer(playerid)
 }
 CMD:gps(playerid,params[])
 {
-	if(PlayerHasItem(playerid,"GpsMap"))
-	{
+	//if(PlayerHasItem(playerid,"GpsMap"))
+	//{
 	ShowPlayerDialog(playerid,DIALOG_GPS,2,"Gps Point","Miner1\nMiner2\nFish1\nFish2\nFish3","Ok","Close");
-	}
-	else
-	{
-	SCM(playerid,-1,"You no have gps");
-	}
+//	}
+	//else
+	//{
+//	SCM(playerid,-1,"You no have gps");
+//	}
 	return 1;
 }
 CMD:sleep(playerid,params[])
@@ -2140,14 +2148,9 @@ CMD:shop(playerid,params[])
 ///CMD TEST
 CMD:eg(playerid,params[])
 {
+	if(PlayerInfo[playerid][pAdmin] <3) return 0;
 	VInfo[GetPlayerVehicleID(playerid)][Fuel] = 100;
 	VInfo[GetPlayerVehicleID(playerid)][Engine] = 1;
-	return 1;
-}
-CMD:gun(playerid,params[])
-{
-	GivePlayerWeaponAC(playerid,33,9999);
-	PlayerInfo[playerid][pAmmoRifle] = 900;
 	return 1;
 }
 ///////////////////////
