@@ -45,7 +45,7 @@ Incognito|for streamer
 VinPure| Owner this gamemode
 |===================================|
 */
-#define GNAME "LoD:Z 1.2b"
+#define GNAME "LoD:Z 1.2b."
 #define MNAME "mapname |-[LandDeath]-|"
 #define HNAME "hostname The Land Of Death [Status:Dev]"
 
@@ -1113,7 +1113,112 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
     {
 	SetPlayerHP(playerid,-1);
     }
-    
+    //////////////////////////////////////
+	if(weaponid == 0)
+ 	{
+ 	GivePlayerHP(playerid,-5);
+ 	}
+	if(weaponid == 1)
+	{
+ 	GivePlayerHP(playerid,-8);
+ 	}
+	if(weaponid == 2)
+	{
+ 	GivePlayerHP(playerid,-10);
+ 	}
+	if(weaponid == 3)
+	{
+ 	GivePlayerHP(playerid,-10);
+ 	}
+	if(weaponid == 4)
+	{
+ 	GivePlayerHP(playerid,-15);
+ 	}
+	if(weaponid == 5)
+	{
+ 	GivePlayerHP(playerid,-13);
+ 	}
+	if(weaponid == 6)
+	{
+ 	GivePlayerHP(playerid,-10);
+ 	}
+	if(weaponid == 7)
+	{
+ 	GivePlayerHP(playerid,-10);
+ 	}
+	if(weaponid == 8)
+	{
+ 	GivePlayerHP(playerid,-20);
+ 	}
+	if(weaponid == 9) 
+	{
+ 	GivePlayerHP(playerid,-25);
+ 	}
+	if(weaponid == 10)
+	{
+ 	GivePlayerHP(playerid,-50);
+ 	}
+	if(weaponid == 11) 
+	{
+ 	GivePlayerHP(playerid,-20);
+ 	}
+	if(weaponid == 12)
+	{
+ 	GivePlayerHP(playerid,-25);
+ 	}
+	if(weaponid == 13)
+	{
+ 	GivePlayerHP(playerid,-25);
+ 	}
+	if(weaponid == 16)
+	{
+ 	GivePlayerHP(playerid,-70);
+ 	}
+	if(weaponid == 22)
+	{
+ 	GivePlayerHP(playerid,-25);
+ 	}
+	if(weaponid == 25)
+	{
+ 	GivePlayerHP(playerid,-25);
+ 	}
+	if(weaponid == 26)
+	{
+ 	GivePlayerHP(playerid,-35);
+ 	}
+	if(weaponid == 27)
+	{
+ 	GivePlayerHP(playerid,-35);
+ 	}
+	if(weaponid == 28)
+	{
+ 	GivePlayerHP(playerid,-15);
+ 	}
+	if(weaponid == 29)
+	{
+ 	GivePlayerHP(playerid,-25);
+ 	}
+	if(weaponid == 30)
+	{
+ 	GivePlayerHP(playerid,-25);
+ 	}
+	if(weaponid == 31) 
+	{
+ 	GivePlayerHP(playerid,-25);
+ 	}
+	if(weaponid == 32) 
+	{
+ 	GivePlayerHP(playerid,-15);
+ 	}
+	if(weaponid == 33)
+	{
+ 	GivePlayerHP(playerid,-35);
+ 	}
+	if(weaponid == 34) 
+	{
+ 	GivePlayerHP(playerid,-50);
+ 	}
+	////////////////////////////////////////////////////////
 	if(IsPlayerNPC(issuerid))
 	{
 	if(FCNPC_GetWeapon(issuerid) == 0)
@@ -1126,42 +1231,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 }
 public OnPlayerGiveDamage(playerid, damagedid, Float: amount, weaponid, bodypart)
 {
-	if(!IsPlayerNPC(playerid) || !IsPlayerNPC(damagedid))
-	{
-	if(damagedid != INVALID_PLAYER_ID)
-	{
-	if(weaponid == 0) { PlayerInfo[damagedid][hp] -= 5; }
-	if(weaponid == 1) { PlayerInfo[damagedid][hp] -= 8; }
-	if(weaponid == 2) { PlayerInfo[damagedid][hp] -= 10; }
-	if(weaponid == 3) { PlayerInfo[damagedid][hp] -= 10; }
-	if(weaponid == 4) { PlayerInfo[damagedid][hp] -= 12; }
-	if(weaponid == 5) { PlayerInfo[damagedid][hp] -= 13; }
-	if(weaponid == 6) { PlayerInfo[damagedid][hp] -= 10; }
-	if(weaponid == 7) { PlayerInfo[damagedid][hp] -= 10; }
-	if(weaponid == 8) { PlayerInfo[damagedid][hp] -= 20; }
-	if(weaponid == 9) { PlayerInfo[damagedid][hp] -= 25; }
-	if(weaponid == 10) { PlayerInfo[damagedid][hp] -= 50; }
-	if(weaponid == 11) { PlayerInfo[damagedid][hp] -= 20; }
-	if(weaponid == 12) { PlayerInfo[damagedid][hp] -= 25; }
-	if(weaponid == 13) { PlayerInfo[damagedid][hp] -= 25; }
-	if(weaponid == 16) { PlayerInfo[damagedid][hp] -= 70; }
-	if(weaponid == 22) { PlayerInfo[damagedid][hp] -= 25; }
-	if(weaponid == 25) { PlayerInfo[damagedid][hp] -= 35; }
-	if(weaponid == 26) { PlayerInfo[damagedid][hp] -= 30; }
-	if(weaponid == 27) { PlayerInfo[damagedid][hp] -= 35; }
-	if(weaponid == 28) { PlayerInfo[damagedid][hp] -= 15; }
-	if(weaponid == 29) { PlayerInfo[damagedid][hp] -= 25; }
-	if(weaponid == 30) { PlayerInfo[damagedid][hp] -= 25; }
-	if(weaponid == 31) { PlayerInfo[damagedid][hp] -= 30; }
-	if(weaponid == 32) { PlayerInfo[damagedid][hp] -= 15; }
-	if(weaponid == 33) { PlayerInfo[damagedid][hp] -= 35; }
-	if(weaponid == 34) { PlayerInfo[damagedid][hp] -= 50; }
-	if(IsPlayerConnected(playerid))
-	{
-	PlayerPlaySound(playerid, 17802, 0.0, 0.0, 0.0);
-	}
-	}
-	}
+
 	
 	for(new Sz; Sz < MAX_SZ; Sz++)
 	{
