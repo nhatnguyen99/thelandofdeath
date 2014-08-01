@@ -4960,6 +4960,24 @@ public OnPlayerPickupItem(playerid)
                 cleani(i);
                 }
                 cleani(i);
+                if(ItemInfo[i][ItemModel] == ModelGascan)
+                {
+                Delete3DTextLabel(Label[i]);
+                DestroyObject(DropObject[i]);
+                SCM(playerid,-1,"You pickup item Gascan");
+                AddItem(playerid,"Gascan",1);
+                ItemInfo[i][ItemAmount] = 0;
+                PlayerInfo[playerid][pSlotu] += 1;
+                }
+                if(ItemInfo[i][ItemModel] == ModelEGascan)
+                {
+                Delete3DTextLabel(Label[i]);
+                DestroyObject(DropObject[i]);
+                SCM(playerid,-1,"You pickup item Empty Gas can");
+                AddItem(playerid,"EGascan",1);
+                ItemInfo[i][ItemAmount] = 0;
+                PlayerInfo[playerid][pSlotu] += 1;
+                }
                 if(ItemInfo[i][ItemModel] == ModelHammer)
                 {
                 Delete3DTextLabel(Label[i]);
