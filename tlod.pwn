@@ -8,8 +8,8 @@
    | $$   | $$  | $$| $$$$$$$$      | $$_____|  $$$$$$$| $$  | $$| $$__| $$
    | $$   | $$  | $$ \$$     \      | $$     \\$$    $$| $$  | $$ \$$    $$
     \$$    \$$   \$$  \$$$$$$$       \$$$$$$$$ \$$$$$$$ \$$   \$$  \$$$$$$$
-    
-    
+
+
                 ______
 	           /      \
 	  ______  |  $$$$$$\
@@ -19,7 +19,7 @@
 	| $$__/ $$| $$
 	 \$$    $$| $$
 	  \$$$$$$  \$$
-	  
+
 	 _______                        __      __
 	|       \                      |  \    |  \
 	| $$$$$$$\  ______    ______  _| $$_   | $$____
@@ -674,7 +674,6 @@ forward UnHass(playerid);
 public UnHass(playerid)
 {
     PlayerInfo[playerid][pHas] = 0;
-	return 1;
 }
 public OnPlayerUpdate(playerid)
 {
@@ -705,7 +704,7 @@ public OnPlayerUpdate(playerid)
 		}
         //SCM(playerid, 0xFFFFFFFF, msg);
     }
-    
+
 	for(new Sz; Sz < MAX_SZ; Sz++)
 	{
 		if(IsPlayerInRangeOfPoint(playerid, SafeZoneInfo[Sz][szSize], SafeZoneInfo[Sz][szPosX], SafeZoneInfo[Sz][szPosY], SafeZoneInfo[Sz][szPosZ]))
@@ -874,12 +873,12 @@ public OnPlayerSpawn(playerid)
 	{
 		SetTimerEx("ZMOVE",100,1,"i",playerid);
 	}
-	
+
 	SetTimerEx("HungerSystem",40000,1,"i",playerid);
 	SetTimerEx("AntiCheat",2000,1,"i",playerid);
 	SetTimerEx("SleepSystem",60000,1,"i",playerid);
     PlayerInfo[playerid][pLog] = 1;
-    
+
     new Random = random(sizeof(RandomSpawns));
 	if(PlayerInfo[playerid][pSpawn] == 1)
 	{
@@ -891,7 +890,7 @@ public OnPlayerSpawn(playerid)
 	else
 	{
 	PlayerInfo[playerid][pSleep] = 100;
-	
+
 	ResetPlayerWeapons(playerid);
 	TogglePlayerControllable(playerid,0);
 	ShowSelectGender(playerid);
@@ -920,7 +919,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 	}
 	new slot = PlayerInfo[playerid][pSlot],Float:x,Float:y,Float:z;
 	GetPlayerPos(playerid,x,y,z);
-	
+
 	PlayerInfo[playerid][pSpawn] = 0;
 	PlayerInfo[playerid][pHas] = 0;
 	PlayerInfo[playerid][hp] = 100.0;
@@ -933,7 +932,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 	PlayerInfo[killerid][pLv] += 1;
 	PlayerInfo[killerid][pEXP] = 0;
 	}
-	
+
 	switch(slot)
 	{
 	case 10:CreateItem(ModelBalo10,1,x,y,z-1,0,0,0,0,0);
@@ -1150,7 +1149,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 	{
  	GivePlayerHP(playerid,-20);
  	}
-	if(weaponid == 9) 
+	if(weaponid == 9)
 	{
  	GivePlayerHP(playerid,-25);
  	}
@@ -1158,7 +1157,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 	{
  	GivePlayerHP(playerid,-50);
  	}
-	if(weaponid == 11) 
+	if(weaponid == 11)
 	{
  	GivePlayerHP(playerid,-20);
  	}
@@ -1202,11 +1201,11 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 	{
  	GivePlayerHP(playerid,-25);
  	}
-	if(weaponid == 31) 
+	if(weaponid == 31)
 	{
  	GivePlayerHP(playerid,-25);
  	}
-	if(weaponid == 32) 
+	if(weaponid == 32)
 	{
  	GivePlayerHP(playerid,-15);
  	}
@@ -1214,7 +1213,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 	{
  	GivePlayerHP(playerid,-35);
  	}
-	if(weaponid == 34) 
+	if(weaponid == 34)
 	{
  	GivePlayerHP(playerid,-50);
  	}
@@ -1232,7 +1231,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 public OnPlayerGiveDamage(playerid, damagedid, Float: amount, weaponid, bodypart)
 {
 
-	
+
 	for(new Sz; Sz < MAX_SZ; Sz++)
 	{
 	if(IsPlayerInRangeOfPoint(playerid, SafeZoneInfo[Sz][szSize], SafeZoneInfo[Sz][szPosX], SafeZoneInfo[Sz][szPosY], SafeZoneInfo[Sz][szPosZ]))
@@ -1317,7 +1316,7 @@ CMD:craft2(playerid,params[])
 {
 	ShowPlayerDialog(playerid,DIALOG_CRAFT1,2,"Craft Item","Hammer\nWall\nWalldoor\nGate","Choose","Close");
 	return 1;
-	
+
 }
 CMD:craftskin(playerid,params[])
 {
@@ -1393,7 +1392,7 @@ CMD:opengatebase(playerid,params[])
 	PlayerUseingBase[playerid] = GetClosestBase(playerid);
 	if(IsPlayerInRangeOfPoint(playerid,2,x,y,z))
 	{
-	
+
 	if(BaseInfo[PlayerUseingBase[playerid]][bModel] != ModelGate1&&BaseInfo[PlayerUseingBase[playerid]][bModel] != ModelGate2) return SCM(playerid,-1,"This is not gate");
 	if(BaseInfo[PlayerUseingBase[playerid]][bPass] == 0) return SCM(playerid,-1,"This gate no have password");
 	if(sscanf(params, "d",passw)) return SCM(playerid, COLOR_GREY, "USAGE:{FFFFFF} /opengatebase [password]");
@@ -1543,7 +1542,7 @@ CMD:checkbox(playerid,params[])
 				SCM(playerid,COLOR_BLUE,string);
 				}
 				}
-				
+
 			}
 		}
 	}
@@ -1579,7 +1578,7 @@ CMD:addboxitem(playerid,params[])
 	{
 		case ModelBurger:
 		{
-			if(PlayerHasItem(playerid,"Burger")) 
+			if(PlayerHasItem(playerid,"Burger"))
 			{
 			BoxInfo[i][Item][slotid] = item;
 			RemoveItem(playerid,"Burger",1);
@@ -2255,9 +2254,9 @@ CMD:pm(playerid, params[])
 }
 CMD:s(playerid,params[])
 {
-	new stext[30],Float:x,Float:y,Float:z;
+	new stext[128],Float:x,Float:y,Float:z;
 	GetPlayerPos(playerid,x,y,z);
-	if(sscanf(params, "s[30]",stext)) return SCM(playerid, COLOR_GREY, "USAGE:{FFFFFF} /s [text]");
+	if(sscanf(params, "s[128]",stext)) return SCM(playerid, COLOR_GREY, "USAGE:{FFFFFF} /s [text]");
 	for(new i=0;i<MAX_PLAYERS;i++)
 	{
 	if(IsPlayerInRangeOfPoint(i,40,x,y,z))
@@ -2270,9 +2269,9 @@ CMD:s(playerid,params[])
 }
 CMD:g(playerid,params[])
 {
-	new stext[30],Float:x,Float:y,Float:z;
+	new stext[128],Float:x,Float:y,Float:z;
 	GetPlayerPos(playerid,x,y,z);
-	if(sscanf(params, "s[30]",stext)) return SCM(playerid, COLOR_GREY, "USAGE:{FFFFFF} /g [text]");
+	if(sscanf(params, "s[128]",stext)) return SCM(playerid, COLOR_GREY, "USAGE:{FFFFFF} /g [text]");
 	format(stext, sizeof(stext), "[G]%s :%s.", GetName(playerid),stext);
 	SendClientMessageToAll(COLOR_GOLD,stext);
 
@@ -2324,7 +2323,7 @@ CMD:stats(playerid,params[])
 	GetPlayerHunger(playerid),
 	GetPlayerThirst(playerid));
 	format(string2,sizeof(string2),"Blood[hp]:%f",GetPlayerHP(playerid));
-	
+
 	SCM(playerid,COLOR_GREEN,"|==============================STATS============================|");
 	SCM(playerid,COLOR_GREEN,"|========================The Land of Death======================|");
 	SCM(playerid,COLOR_GREY,string);
@@ -2877,14 +2876,14 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	}
 	if(PRESSED(KEY_FIRE))
 	{
-	
+
 	for(new d=0;d<MAX_DEERS;d++)
 	{
 		new Float:x,Float:y,Float:z,Float:rx,Float:ry,Float:rz;
 		GetDynamicObjectPos(Deer[d],x,y,z);
 		if(IsPlayerInRangeOfPoint(playerid,2,x,y,z))
 		{
-			
+
 			GetDynamicObjectRot(Deer[d],rx,ry,rz);
 			if(rx >= 90 )
 			{
@@ -2910,7 +2909,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
  	MINERT[playerid] = SetTimerEx("MINET",10000,0,"i",playerid);
  	if(mb == 100)
  	{
- 	
+
  	new Float:x,Float:y,Float:z;
  	GetPlayerPos(playerid,x,y,z);
  	SetPlayerProgressBarValue(playerid,mining,0);
@@ -2920,7 +2919,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
  	case 0:CreateItem(ModelIron,1,x,y,z-1,0,0,0,0,0);
  	case 1:CreateItem(ModelCU,1,x,y,z-1,0,0,0,0,0);
  	}
- 	
+
  	}
 	}
 //=============================================================================
@@ -2938,12 +2937,12 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
  			}
  			SetPVarInt(playerid,"TreeCID",i);
  			KillTimer(CutT[playerid]);
- 			
+
             new Float:cb = GetPlayerProgressBarValue(playerid,cutting);
             ShowPlayerProgressBar(playerid,cutting);
             SetPlayerProgressBarValue(playerid,cutting,cb+5);
             UpdatePlayerProgressBar(playerid,cutting);
-            
+
 			CutT[playerid] = SetTimerEx("CuTi",10000,0,"i",playerid);
             if(cb == 100 || tInfo[i][Health] <= 0)
             {
@@ -2952,12 +2951,12 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
             SetPlayerProgressBarValue(playerid,cutting,0);
  			HidePlayerProgressBar(playerid,cutting);
 			CreateItem(ModelWood,1,x,y,z-1,0,0,0,0,0);
-            
+
             }
             break;
         }
     }
-    
+
 	return 1;
 	}
 	if(PRESSED(KEY_HANDBRAKE))
@@ -2972,7 +2971,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	{
 	OnPlayerPickupItem(playerid);
 	}
-	if (PRESSED(KEY_YES)) 
+	if (PRESSED(KEY_YES))
 	{
 	ShowInventory(playerid);
 	}
@@ -3578,7 +3577,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
     			PlayerInfo[playerid][pSlot] = 5;
    				PlayerInfo[playerid][pSlotu] = 0;
                 SpawnPlayer(playerid);
-                
+
             }
         }
 
@@ -3610,7 +3609,7 @@ public OnPlayerModelSelectionEx(playerid, response, extraid, modelid)
 	    {
 	    if(modelid == 170)
 	    {
-	    
+
 	    HideModelSelectionMenu(playerid);
 		ShowPlayerDialog(playerid,DIALOG_CSKIN1,0,"Skin Surival","You need 5 deerskin to craft","Craft","Close");
 	    }
@@ -3642,7 +3641,7 @@ public OnPlayerModelSelectionEx(playerid, response, extraid, modelid)
 	}
 	if(extraid == CUSTOM_MENU)
 	{
-	    
+
 	    if(response)
 	    {
 		if(modelid == ModelBurger)
@@ -4458,7 +4457,7 @@ public OnPlayerUseItem(playerid,ItemName[])
 	PlayerInfo[playerid][pSlotu] -=1;
 	break;
 	}
-	
+
 	}
     return 0;
     }
@@ -4528,7 +4527,7 @@ public OnPlayerUseItem(playerid,ItemName[])
             break;
         }
     }
-    
+
     return 0;
     }
     if(!strcmp(ItemName,"MeatCook",true))
@@ -4837,7 +4836,7 @@ public OnPlayerUseItem(playerid,ItemName[])
     if(GetPlayerHunger(playerid)>=100)return SCM(playerid,0xFFFFFFFF,"You not hungy.");
 	GivePlayerHunger(playerid,50);
 	if(GetPlayerHunger(playerid) > 100) SetPlayerHunger(playerid,100);
-    RemoveItem(playerid,ItemName,1); 
+    RemoveItem(playerid,ItemName,1);
     SCM(playerid,0xFFFFFFFF,"You used a pizza.");
     PlayerInfo[playerid][pSlotu] -=1;
     return 0;
@@ -6340,7 +6339,7 @@ TextDrawUseBox(TextFull, 1);
 TextDrawBoxColor(TextFull, 255);
 TextDrawTextSize(TextFull, 360.000000, 20.000000);
 TextDrawSetSelectable(TextFull, 0);
-	
+
 TLOGIN0 = TextDrawCreate(644.000000, 0.000000, "_");
 TextDrawBackgroundColor(TLOGIN0, 255);
 TextDrawFont(TLOGIN0, 1);
@@ -7222,7 +7221,7 @@ stock IsPlayerInPointMine(playerid)
 	return 1;
 	}
 	return 0;
-	
+
 }
 stock LoadTrees()
 {
@@ -7419,7 +7418,7 @@ stock LoadBox()
             BoxInfo[i][Obj] = CreateObject(1271, BoxInfo[i][xPos], BoxInfo[i][yPos], BoxInfo[i][zPos],0,0,0);
             bload ++;
         }
-        
+
     }
     printf("\n  %d Box loaded!",bload);
     return true;
