@@ -4854,7 +4854,7 @@ public OnPlayerUseItem(playerid,ItemName[])
  	if(!strcmp(ItemName,"Soda",true))
 	{
     if(GetPlayerThirst(playerid)>=100)return SCM(playerid,0xFFFFFFFF,"You not Thirst.");
-	GivePlayerThirst(playerid,50);
+	SetPlayerThirst(playerid,100);
 	if(GetPlayerThirst(playerid) > 100) SetPlayerThirst(playerid,100);
     RemoveItem(playerid,ItemName,1);
     SCM(playerid,0xFFFFFFFF,"You used a Soda.");
@@ -4864,10 +4864,12 @@ public OnPlayerUseItem(playerid,ItemName[])
 	if(!strcmp(ItemName,"Water",true))
 	{
     if(GetPlayerThirst(playerid)>=100)return SCM(playerid,0xFFFFFFFF,"You not Thirst.");
-	GivePlayerThirst(playerid,50);
+	SetPlayerThirst(playerid,100);
 	if(GetPlayerThirst(playerid) > 100) SetPlayerThirst(playerid,100);
     RemoveItem(playerid,ItemName,1);
     SCM(playerid,0xFFFFFFFF,"You used a Water bottle.");
+	SetPlayerProgressBarValue(playerid,bwater,GetPlayerThirst(playerid));
+	UpdatePlayerProgressBar(playerid,bwater);
 	AddItem(playerid,"EWater",1);
     return 0;
     }
